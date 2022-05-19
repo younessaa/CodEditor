@@ -1,0 +1,27 @@
+
+
+.Header {
+    width: 100%;
+    border-bottom: 2px solid #B4B4B4;
+}
+
+.logo {
+    border-radius: 10px;
+}
+
+.login {
+    color: white;
+    font-weight: bolder;
+    background-color: #299EFE;
+    border-radius: 10px;
+    padding: 8px;
+}
+
+.login:hover {
+    color: white;
+    font-weight: bolder;
+    background-color: #208ae1;
+    border-radius: 10px;
+    padding: 8px;
+    text-decoration: none;
+}

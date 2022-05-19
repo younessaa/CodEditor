@@ -1,0 +1,57 @@
+.ImageHeaderLite {
+    position: relative;
+    text-align: center;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: auto;
+    height: auto;
+    margin-top: 0 !important;
+}
+
+.ImageHeaderLite div {
+    width: 100%;
+}
+
+.divImage {
+    height: 20em;
+}
+
+.ImageHeaderLite h4 {
+    font-size: 500;
+    color: white;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* background svg responsivity
+@media (min-width:1520px) {
+    .ImageHeaderLite {
+        background-size: 1700px auto;
+    }
+}
+
+@media (max-width:1520px) and (min-width:1440px) {
+    .ImageHeaderLite {
+        background-size: 1520px auto;
+    }
+}
+
+@media (max-width:1440px) and (min-width:1280px) {
+    .ImageHeaderLite {
+        background-size: 1440px auto;
+    }
+}
+
+@media (max-width:1280px) {
+    .ImageHeaderLite {
+        background-size: auto;
+    }
+}
+
+@media (max-width:990px) {
+    .ImageHeaderLite {
+        background-size: auto;
+    }
+} */

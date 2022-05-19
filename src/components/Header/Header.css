@@ -1,0 +1,26 @@
+
+.nav-link{
+    color: #299EFE !important;
+    font-weight: 700 !important;
+}
+
+.dropdown-toggle{
+    font-weight: 400 !important;
+    color: #999999 !important;
+}
+
+nav a.active{
+    border-bottom: 3px solid #299EFE;
+    transition: all ease 0.5s;
+}
+
+nav .nav-link.tps {
+    margin-right: 20px;
+}
+
+.nav-link.dropdown-toggle {
+    background-color: none !important;
+    background: none !important;
+    border: none !important;
+}
+

@@ -1,0 +1,16 @@
+
+
+#no{
+	height: 36px;
+	width: 80px;
+	font-size: 16px;
+	color: rgb(185, 185, 185);
+	border: 1px solid #afec3f;
+	border-radius: 4px;
+	background-color: #F5F5F5;
+}
+
+#no:focus{
+	outline: none;
+}
+
