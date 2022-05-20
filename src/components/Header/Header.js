@@ -38,13 +38,13 @@ const Header = () => {
                             <NavLink to={'/'} className="nav-link">Accueil</NavLink>
                         </li>
                         <li className="nav-item">
-                            <NavLink to={'/editeur'} className="nav-link">Éditeur</NavLink>
+                            <NavLink to={'/editor'} className="nav-link">Éditeur</NavLink>
                         </li>
                         <li className="nav-item">
-                            <NavLink to={'/cours'} className="nav-link">Cours</NavLink>
+                            <NavLink to={'/course'} className="nav-link">Cours</NavLink>
                         </li>
                         <li >
-                            <NavLink to={'/tps'} className="nav-link tps">TPs</NavLink>
+                            <NavLink to={'/labs'} className="nav-link tps">TPs</NavLink>
                         </li>
             
                         <li className="nav-item dropdown">
@@ -52,7 +52,7 @@ const Header = () => {
                                 {user.result.name.toUpperCase()}
                             </button>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            {isStudent && <Link to={'/mes-tps'} className="dropdown-item" >Mes TPs</Link>} 
+                            {isStudent && <Link to={'/mylabs'} className="dropdown-item" >Mes TPs</Link>} 
                             <Link to={'/profil'} className="dropdown-item" >Profil</Link><hr/>
                             <button className="dropdown-item" onClick={logout} >Se déconnecter</button>
                             </div>

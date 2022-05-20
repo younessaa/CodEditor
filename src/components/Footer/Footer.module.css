@@ -1,8 +1,16 @@
 
 .Footer {
+    background-color: #F5F5F5;
+    margin-top: 1%;
+    width: 100% !important;
+    padding: 6px 2px;
+    margin-left: 0 !important;
+}
+
+.foo {
     border-bottom: 1px solid #B4B4B4;
     padding: 6px 4px;
-    margin-bottom: 4px;
+    margin-bottom: 8px;
 }
 
 .logo {

@@ -3,6 +3,7 @@
 .Header {
     width: 100%;
     border-bottom: 2px solid #B4B4B4;
+    margin-bottom: 4px;
 }
 
 .logo {

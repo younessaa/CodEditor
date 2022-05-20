@@ -4,21 +4,20 @@ import Navbar from '../Navbar/Navbar';
 import { compileAPI } from '../../actions/compile'; 
 import axios from 'axios';
 
+import styles from './CodEditor.module.css';
+
 
 
 const initialState = { code: '', language: '', input: '' };
 
 
-const CodEditor = () => {
+const CodEditor = ({setFile, setFileType}) => {
 
 	// State variable to set users source code
 	const [userCode, setUserCode] = useState(``);
 	
 	// State variable to set editors default language
 	const [userLang, setUserLang] = useState("python");
-	
-	// State variable to set editors default value
-	const [value, setValue] = useState(`print("Hello world")`);
 	
 	// State variable to set editors default theme
 	const [userTheme, setUserTheme] = useState("light");
@@ -39,61 +38,6 @@ const CodEditor = () => {
 	// while fetching data
 	const [loading, setLoading] = useState(false);
 	
-	const values = [
-		`#include <stdio.h>
-	
-		int main() {
-			// Write C code here
-			printf("Hello world");
-			
-			return 0;
-		}`,
-		`#include <iostream>
-	
-		int main() {
-			// Write C++ code here
-			std::cout << "Hello world!";
-		
-			return 0;
-		}`,
-		`print("Hello world")`,
-		`class HelloWorld {
-			public static void main(String[] args) {
-				System.out.println("Hello, World!"); 
-			}
-		}`,
-	];
-	
-	useEffect(() => {
-		switch (userLang) {
-			case "c" : setValue(`#include <stdio.h>
-	
-			int main() {
-				// Write C code here
-				printf("Hello world");
-				
-				return 0;
-			}`); break;
-	
-			case "cpp" : setValue(`#include <iostream>
-	
-			int main() {
-				// Write C++ code here
-				std::cout << "Hello world!";
-			
-				return 0;
-			}`); break;
-	
-			case "python3" : setValue(`print("Hello world")`); break;
-	
-			case "java" : setValue(`class HelloWorld {
-				public static void main(String[] args) {
-					System.out.println("Hello, World!"); 
-				}
-			}`); break;
-		}
-	  });
-	
 	const options = {
 		fontSize: fontSize
 	}
@@ -101,7 +45,6 @@ const CodEditor = () => {
 	// Function to call the compile endpoint
 	function compile() {
 		setLoading(true);
-		console.log(value);
 		if (userCode === ``) {
 		return
 		}
@@ -124,58 +67,59 @@ const CodEditor = () => {
 	}
 	
 	return (
-		<div className="App">
-		<Navbar
-			userLang={userLang} setUserLang={setUserLang}
-			userTheme={userTheme} setUserTheme={setUserTheme}
-			fontSize={fontSize} setFontSize={setFontSize}
-			setValue={setValue}
-		/>
-		<div className="main">
-			<div className="left-container">
-			<Editor
-				options={options}
-				height="calc(100vh - 50px)"
-				width="100%"
-				theme={userTheme}
-				language={userLang}
-				defaultLanguage={userLang}
-				defaultValue={value}
-				onChange={(value) => { setUserCode(value) }}
+		<div className={styles.codEditor}>
+			<Navbar
+				userLang={userLang} setUserLang={setUserLang}
+				userTheme={userTheme} setUserTheme={setUserTheme}
+				fontSize={fontSize} setFontSize={setFontSize}
+				compile = {compile} setFileType={setFileType}
 			/>
-			<button className="run-btn" onClick={() => compile()}>
-				Run
-			</button>
-			</div>
-			<div className="right-container">
-			<h4 className='input-field'>Input:</h4>
-			<div className="input-box">
-				<textarea id="code-inp" onChange=
-				{(e) => setUserInput(e.target.value)}>
-				</textarea>
-			</div>
-			<div className="output-box">
-				<h4 className='output-field'>Output:</h4>
-				{loading ? (
-					<div className="text-center">
-	
-						<div className="spinner-border text-secondary" role="status">
-							<span class="sr-only">Loading...</span>
-						</div>
+			<div className={styles.editorBody}>
+				<div className='container-fliud'>
+					<div className='row'>
+						<div className={'col-8 ' + styles.leftCol}>
+							<Editor
+								options={options}
+								height="calc(100vh - 50px)"
+								width="100%"
+								theme={userTheme}
+								language={userLang}
+								defaultLanguage={userLang}
+								defaultValue={""}
+								onChange={(value) => { setUserCode(value); setFile(value);  }}
+							/>
+							
+						</div>	
+						<div className='col-4'>
+						<h4 className={styles.inputField}>Input:</h4>
+							<div className="input-box">
+								<textarea className={styles.codeInput} onChange=
+								{(e) => setUserInput(e.target.value)}>
+								</textarea>
+							</div>
+							<div >
+								<h4 className={styles.outputField}>Output:</h4>
+								{loading ? (
+									<div className="text-center">
+					
+										<div className="spinner-border text-secondary" role="status">
+											<span class="sr-only">Loading...</span>
+										</div>
+									</div>
+								) : (
+									<div >
+										<pre className={styles.output}>{userOutput}</pre>
+										<pre>CPU Time: {cpuTime}</pre>
+										<button type="button" class="btn btn-secondary" onClick={() => { clearOutput() }}>
+											Clear
+										</button>
+									</div>
+								)}
+							</div>
+						</div>	
 					</div>
-				) : (
-					<div>
-					<pre>{userOutput}</pre>
-					<pre>{cpuTime}</pre>
-					<button onClick={() => { clearOutput() }}
-						className="clear-btn">
-						Clear
-					</button>
-					</div>
-				)}
+				</div>
 			</div>
-			</div>
-		</div>
 		</div>
 	);
 	}

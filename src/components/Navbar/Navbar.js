@@ -1,10 +1,11 @@
 import React, {useEffect} from 'react';
 import Select from 'react-select';
+import styles from './Navbar.module.css';
 
 const Navbar = ({userLang, setUserLang, userTheme,
-				setUserTheme, fontSize, setFontSize, setValue}) => {
+				setUserTheme, fontSize, setFontSize, compile, setFileType}) => {
 	const languages = [
-		{ value: "python3", label: "Python" },
+		{ value: "python", label: "Python" },
 		{ value: "c", label: "C" },
 		{ value: "cpp", label: "C++" },
 		{ value: "java", label: "Java" },
@@ -16,50 +17,25 @@ const Navbar = ({userLang, setUserLang, userTheme,
 		{ value: "vs-dark", label: "Dark" },
 	]
 
-	useEffect(() => {
-		switch (userLang) {
-			case "c" : setValue(`#include <stdio.h>
-	
-			int main() {
-				// Write C code here
-				printf("Hello world");
-				
-				return 0;
-			}`); break;
-	
-			case "cpp" : setValue(`#include <iostream>
-	
-			int main() {
-				// Write C++ code here
-				std::cout << "Hello world!";
-			
-				return 0;
-			}`); break;
-	
-			case "python3" : setValue(`print("Hello world")`); break;
-	
-			case "java" : setValue(`class HelloWorld {
-				public static void main(String[] args) {
-					System.out.println("Hello, World!"); 
-				}
-			}`); break;
-		}
-	  });
 
 	return (
-		<div className="navbar">
-			<h1>CodEditor</h1>
-			<Select options={languages}
+		<div className={'navbar ' + styles.navBar}>
+			<h3 className={styles.title}>CodEditor</h3>
+			<Select options={languages} defaultValue={{ value: "python", label: "Python" }}
 					onChange={(e) => {
 						setUserLang(e.value);
+						setFileType(e.value);
 					}}
 					placeholder={languages[userLang]} />
-			<Select options={themes} 
+			<Select options={themes} defaultValue={{ value: "light", label: "Light" }}
 					onChange={(e) => setUserTheme(e.value)}
 					placeholder={themes[userTheme]} />
+			<button type="button" class="btn btn-primary" onClick={() => compile()}>
+				Run
+			</button>
 			<label>Font Size</label>
-			<input type="range" min="18" max="30"
-				value={fontSize} step="2"
+			<input type="range" min="12" max="24"
+				value={fontSize} step="1"
 				onChange={(e) => { setFontSize(e.target.value)}}/>
 		</div>
 	)

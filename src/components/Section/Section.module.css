@@ -1,0 +1,32 @@
+
+
+.Section {
+    border-top: 1px solid #DDDDDD;
+    margin: 1% 1%;
+    margin-left: 6%;
+    padding-top: 1%;
+}
+
+.title {
+    color: #0070A8;
+    margin-left: 6%;
+    margin-bottom: 1.7%;
+    font-weight: 700;
+}
+
+.tp {
+    margin-left: 20%;
+    margin-bottom: 2%;
+}
+
+.pdf {
+    color: #0070A8;
+    font-weight: 500;
+    margin-right: 3%;
+}
+
+.realiser {
+    color: #333333;
+    display: inline-block;
+    background-color: #E6E6E6;
+}

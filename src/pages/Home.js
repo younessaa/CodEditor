@@ -1,26 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
-import * as actionType from '../../constants/actionTypes';
-import Header from '../Header/Header';
-import ImageHeaderLite from '../ImageHeaderLite/ImageHeaderLite';
-import UnderLineText from '../UnderLineText/UnderLineText';
+import Header from '../components/Header/Header';
+import ImageHeaderLite from '../components/ImageHeaderLite/ImageHeaderLite';
+import UnderLineText from '../components/UnderLineText/UnderLineText';
 
-import bg from '../../assets/images/bg-code.png';
-import vector1 from '../../assets/images/vector1.svg';
-import vector2 from '../../assets/images/vector2.svg';
-import vector3 from '../../assets/images/vector3.svg';
-import styles from './Home.module.css'
-import Vector from '../Vector/Vector';
-import Footer from '../Footer/Footer';
-import CodEditor from '../CodEditor/CodEditor';
+import bg from '../assets/images/bg-code.png';
+import vector1 from '../assets/images/vector1.svg';
+import vector2 from '../assets/images/vector2.svg';
+import vector3 from '../assets/images/vector3.svg';
+import styles from '../assets/styles/Home.module.css';
+import Vector from '../components/Vector/Vector';
+import Footer from '../components/Footer/Footer';
+import CodEditor from '../components/CodEditor/CodEditor';
 
 
 const Home = () => {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
-  console.log(user.result);
-  const dispatch = useDispatch();
+
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -35,20 +33,13 @@ const Home = () => {
 
   const redirect = () => {
     if(user === null || user === undefined){
-      navigate('/auth');
+      // navigate('/auth');
     }
   }
 
-  const logout = () => {
-    dispatch({ type: actionType.LOGOUT });
-
-    navigate('/auth');
-
-    setUser(null);
-  };
 
   return (
-    <div className='container-fluid'>
+    <>
       <Header />
       
       <ImageHeaderLite image={bg} title="Commencez votre voyage de codage dès maintenant !"/>
@@ -72,7 +63,7 @@ const Home = () => {
       <UnderLineText text="Utiliser CodEnligne Maintenant"/>
       <CodEditor />
       <Footer />
-    </div>
+    </>
   );
 };
 
