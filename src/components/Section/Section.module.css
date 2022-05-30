@@ -30,3 +30,7 @@
     display: inline-block;
     background-color: #E6E6E6;
 }
+
+.link:hover {
+    text-decoration: none;
+}

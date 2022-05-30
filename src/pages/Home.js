@@ -1,6 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import React from 'react';
 
 import Header from '../components/Header/Header';
 import ImageHeaderLite from '../components/ImageHeaderLite/ImageHeaderLite';
@@ -17,26 +15,6 @@ import CodEditor from '../components/CodEditor/CodEditor';
 
 
 const Home = () => {
-  const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
-
-  const location = useLocation();
-  const navigate = useNavigate();
-
-  const authState = useSelector((state) => state.auth);
-  console.log(authState.isStudent);
-
-  useEffect(() => {
-
-    redirect();
-  }, [location]);
-
-
-  const redirect = () => {
-    if(user === null || user === undefined){
-      // navigate('/auth');
-    }
-  }
-
 
   return (
     <>

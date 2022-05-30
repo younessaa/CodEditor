@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Avatar, Button, Paper, Grid, Typography, Container } from '@material-ui/core';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 
+
 import { studentSignIn, studentSignUp, tutorSignIn, tutorSignUp } from '../../actions/auth';
+
 
 import useStyles from './styles';
 import Input from './Input';
@@ -16,9 +18,9 @@ const SignUp = () => {
   const [isSignup, setIsSignup] = useState(false);
   const [isStudent, setIsStudent] = useState(true);
   const dispatch = useDispatch();
+  const location = useLocation();
   const navigate = useNavigate();
   const classes = useStyles();
-
   const [showPassword, setShowPassword] = useState(false);
   const handleShowPassword = () => setShowPassword(!showPassword);
 

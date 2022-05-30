@@ -23,9 +23,8 @@ const Footer = () => {
                   (user !== null && user !== undefined) && 
                   <div className='col-4'>
                       <h5>Liens rapides</h5>
-                      <Link to={'/editeur'} className={styles.lien}>Éditeur</Link><br />
-                      <Link to={'/cours'} className={styles.lien}>Cours</Link><br />
-                      <Link to={'/tps'} className={styles.lien}>TPs</Link>
+                      <Link to={'/editor'} className={styles.lien}>Éditeur</Link><br />
+                      <Link to={'/courses'} className={styles.lien}>Cours</Link><br />
                   </div> 
                 }
                 <div className='col-4'>

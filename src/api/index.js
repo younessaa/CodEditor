@@ -29,3 +29,10 @@ export const fetchTutors = () => API.get('/tutors');
 export const fetchTutor = (id) => API.get(`/tutors/${id}`);
 export const updateTutor = (id, updatedTutor) => API.patch(`/tutors/${id}`, updatedTutor);
 export const deleteTutor = (id) => API.delete(`/tutors/${id}`);
+
+
+export const fetchCourses = () => API.get('/courses');
+export const fetchCourse = (id) => API.get(`/courses/${id}`);
+export const createCourse = (Course) => API.post('/courses', Course);
+export const updateCourse = (id, updatedCourse) => API.patch(`/courses/${id}`, updatedCourse);
+export const deleteCourse = (id) => API.delete(`/courses/${id}`);

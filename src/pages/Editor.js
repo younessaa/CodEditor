@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState, useEffect} from 'react';
 import Header from '../components/Header/Header';
 import CodEditor from '../components/CodEditor/CodEditor';
 import Footer from '../components/Footer/Footer';
@@ -10,6 +10,12 @@ const Editor = () => {
   const [file, setFile] = useState("");
   const [fileType, setFileType] = useState("py");
   const [fileName, setFileName] = useState("fichier");
+
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
+  
+
+  
+
   let dateNow;
 
   const downloadCode = () => {
