@@ -28,7 +28,7 @@ const UsersOnligne = () => {
   useEffect(() => {
       socket = io(ENDPOINT);
 
-      socket.on("roomData", ({ users }) => {
+      socket.on("roomDataByCourseID", ({ users }) => {
         setUsers(users);
       });
   }, [ENDPOINT, location]);
@@ -41,7 +41,7 @@ const UsersOnligne = () => {
         <div className='justify-content-md-center'>
         { users ? 
             users.map((user) => (
-                    <div key={user.id} className='mb-2 ml-4'>
+                    <div key={user._id} className='mb-2 ml-4'>
                         <img className={styles.avatar} src={avatar} alt='avatar'/>
                         <h6 className={styles.name}>{user.name.toUpperCase()}</h6>
                     </div>

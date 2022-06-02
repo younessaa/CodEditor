@@ -59,9 +59,6 @@ const LabPage = ({id}) => {
             list.push({value: user._id, label: user.name.toUpperCase()})
         ));
         
-        if(users[0]) {
-            setUserId(users[0]._id)
-        }
         setUsers_list(list);  
     }, [users]);
 
@@ -71,13 +68,13 @@ const LabPage = ({id}) => {
             setUserCode(data.userCode);
             setUserName(data.name);
         }
-    }, [userId])
+    }, [userId, users])
 
     return (
         <div className={'m-2 ' + styles.LabPage}>
             <div className='row mb-2'>
                 <h5 className={'col-5 pb-2 ' + styles.title}>
-                    {userName !== "" ? `l’ÉDITEUR DE ${userName}`.toUpperCase() : "Aucun utilisateur dans ce cours"}
+                    {userName !== "" ? `l’ÉDITEUR DE ${userName}`.toUpperCase() : ""}
                 </h5>
                 <p className={"col-3 text-center mt-1 " + styles.selectionner}>
                     Sélectionnez un étudiant

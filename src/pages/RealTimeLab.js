@@ -43,16 +43,6 @@ const RealTimeLab = () => {
         });
     }, [userCode, userInput]);
 
-    
-
-    // useEffect(() => {
-    //     socket = io(ENDPOINT);
-
-    //     socket.on("codeDataInRoom", ({ codes }) => {
-    //     setUsers(codes);
-    //     });
-    // }, [userCode]);
-
   return (
     <>
         <Header />
