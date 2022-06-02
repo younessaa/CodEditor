@@ -1,9 +1,9 @@
 import { FETCH_ALL, FETCH_ONE, CREATE, UPDATE, DELETE} from '../constants/actionTypes';
 import * as api from '../api/index.js';
 
-export const getCourses = () => async (dispatch) => {
+export const getLabs = () => async (dispatch) => {
   try {
-    const { data } = await api.fetchCourses();
+    const { data } = await api.fetchLabs();
 
     dispatch({ type: FETCH_ALL, payload: data });
   } catch (error) {
@@ -11,9 +11,9 @@ export const getCourses = () => async (dispatch) => {
   }
 };
 
-export const getCourse = (id) => async (dispatch) => {
+export const getLab = (id) => async (dispatch) => {
   try {
-    const { data } = await api.fetchCourse(id);
+    const { data } = await api.fetchLab(id);
 
     dispatch({ type: FETCH_ONE, payload: data });
   } catch (error) {
@@ -21,9 +21,9 @@ export const getCourse = (id) => async (dispatch) => {
   }
 };
 
-export const createCourse = (post) => async (dispatch) => {
+export const createCourse = (lab) => async (dispatch) => {
   try {
-    const { data } = await api.createCourse(post);
+    const { data } = await api.createLab(lab);
 
     dispatch({ type: CREATE, payload: data });
   } catch (error) {
@@ -31,9 +31,9 @@ export const createCourse = (post) => async (dispatch) => {
   }
 };
 
-export const updateCourse = (id, post) => async (dispatch) => {
+export const updateLab = (id, lab) => async (dispatch) => {
   try {
-    const { data } = await api.updateCourse(id, post);
+    const { data } = await api.updateLab(id, lab);
 
     dispatch({ type: UPDATE, payload: data });
   } catch (error) {
@@ -42,9 +42,9 @@ export const updateCourse = (id, post) => async (dispatch) => {
 };
 
 
-export const deleteCourse = (id) => async (dispatch) => {
+export const deleteLab = (id) => async (dispatch) => {
   try {
-    await api.deleteCourse(id);
+    await await api.deleteLab(id);
 
     dispatch({ type: DELETE, payload: id });
   } catch (error) {

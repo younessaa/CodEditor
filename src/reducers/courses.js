@@ -1,19 +1,20 @@
 import { FETCH_ALL, FETCH_ONE, CREATE, UPDATE, DELETE } from '../constants/actionTypes';
 
-export default (courses = [], action) => {
+const coursesReducer =  (state = { courses: [] }, action) => {
   switch (action.type) {
     case FETCH_ALL:
-      return action.payload;
+      return { ...state, courses: action.payload, loading: false, errors: null };
     case FETCH_ONE:
-      return action.payload;
+      return { ...state, courses: action.payload, loading: false, errors: null };
     case CREATE:
-      return [...courses, action.payload];
+      return { ...state, courses: [...state.courses, action.payload], loading: false, errors: null };
     case UPDATE:
-      return courses.map((post) => (post._id === action.payload._id ? action.payload : post));
+      return { ...state, courses: state.courses.map((post) => (post._id === action.payload._id ? action.payload : post)), loading: false, errors: null };
     case DELETE:
-      return courses.filter((post) => post._id !== action.payload);
+      return { ...state, courses: state.courses.filter((post) => post._id !== action.payload), loading: false, errors: null };
     default:
-      return courses;
+      return state;
   }
 };
 
+export default coursesReducer;

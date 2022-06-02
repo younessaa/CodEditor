@@ -12,10 +12,11 @@ const Editor = () => {
   const [fileName, setFileName] = useState("fichier");
 
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
+  // State variable to set users source code
+	const [userCode, setUserCode] = useState(``);
+  // State variable to set users input
+	const [userInput, setUserInput] = useState("");
   
-
-  
-
   let dateNow;
 
   const downloadCode = () => {
@@ -36,13 +37,17 @@ const Editor = () => {
   return (
     <>
       <Header />
-      <CodEditor setFile={setFile} setFileType={setFileType}/>
+      <CodEditor
+        readOnly={false}
+        userCode={userCode} setUserCode={setUserCode} 
+        userInput={userInput} setUserInput={setUserInput}
+        setFile={setFile} setFileType={setFileType}/>
       <div className='container-fliud text-center'>
         <div className='row justify-content-md-center mt-2'>
             <div className='col-md-auto'>
               <div className="input-group mb-3">
                 <input onChange={handleChange} type="text" className="form-control" placeholder="Le nom de fichier" aria-label="Recipient's username" aria-describedby="basic-addon2" />
-                <div class="input-group-append">
+                <div className="input-group-append">
                   <button onClick={() => downloadCode()} className="btn btn-success" type="button">Télécharger le fichier</button>
                 </div>
               </div>

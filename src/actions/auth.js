@@ -21,7 +21,7 @@ export const studentSignUp = (formData, router) => async (dispatch) => {
 
     dispatch({ type: AUTH, data, isStudent: {result : true} });
 
-    router('/editor');
+    router('/');
   } catch (error) {
     console.log(error);
   }
@@ -33,7 +33,7 @@ export const tutorSignIn = (formData, router) => async (dispatch) => {
 
     dispatch({ type: AUTH, data, isStudent: {result : false} });
 
-    router('/editor');
+    router('/');
   } catch (error) {
     console.log(error);
   }
@@ -45,7 +45,7 @@ export const tutorSignUp = (formData, router) => async (dispatch) => {
 
     dispatch({ type: AUTH, data, isStudent: {result : false}});
 
-    router('/editor');
+    router('/');
   } catch (error) {
     console.log(error);
   }

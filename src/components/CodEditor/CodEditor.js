@@ -1,20 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Editor from "@monaco-editor/react";
 import Navbar from '../Navbar/Navbar';
-import { compileAPI } from '../../actions/compile'; 
 import axios from 'axios';
 
 import styles from './CodEditor.module.css';
 
 
-
-const initialState = { code: '', language: '', input: '' };
-
-
-const CodEditor = ({setFile, setFileType}) => {
-
-	// State variable to set users source code
-	const [userCode, setUserCode] = useState(``);
+const CodEditor = ({readOnly, userCode, setUserCode, userInput, setUserInput, setFile, setFileType}) => {
 	
 	// State variable to set editors default language
 	const [userLang, setUserLang] = useState("python");
@@ -24,9 +16,6 @@ const CodEditor = ({setFile, setFileType}) => {
 	
 	// State variable to set editors default font size
 	const [fontSize, setFontSize] = useState(20);
-	
-	// State variable to set users input
-	const [userInput, setUserInput] = useState("");
 	
 	// State variable to set users output
 	const [userOutput, setUserOutput] = useState("");
@@ -39,8 +28,13 @@ const CodEditor = ({setFile, setFileType}) => {
 	const [loading, setLoading] = useState(false);
 	
 	const options = {
-		fontSize: fontSize
+		fontSize: fontSize,
+		readOnly: readOnly
 	}
+
+	useEffect(() => {
+        setUserCode(userCode);
+    }, [userCode]);
 	
 	// Function to call the compile endpoint
 	function compile() {
@@ -85,7 +79,7 @@ const CodEditor = ({setFile, setFileType}) => {
 								theme={userTheme}
 								language={userLang}
 								defaultLanguage={userLang}
-								defaultValue={""}
+								value={userCode}
 								onChange={(value) => { setUserCode(value); setFile(value);  }}
 							/>
 							
@@ -93,7 +87,7 @@ const CodEditor = ({setFile, setFileType}) => {
 						<div className='col-4'>
 						<h4 className={styles.inputField}>Input:</h4>
 							<div className="input-box">
-								<textarea className={styles.codeInput} onChange=
+								<textarea className={styles.codeInput} value={userInput} onChange=
 								{(e) => setUserInput(e.target.value)}>
 								</textarea>
 							</div>
@@ -103,14 +97,14 @@ const CodEditor = ({setFile, setFileType}) => {
 									<div className="text-center">
 					
 										<div className="spinner-border text-secondary" role="status">
-											<span class="sr-only">Loading...</span>
+											<span className="sr-only">Loading...</span>
 										</div>
 									</div>
 								) : (
 									<div >
 										<pre className={styles.output}>{userOutput}</pre>
 										<pre>CPU Time: {cpuTime}</pre>
-										<button type="button" class="btn btn-secondary" onClick={() => { clearOutput() }}>
+										<button type="button" className="btn btn-secondary" onClick={() => { clearOutput() }}>
 											Clear
 										</button>
 									</div>

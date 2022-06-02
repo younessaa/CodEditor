@@ -8,12 +8,12 @@ import Input from '../Auth/Input';
 
 import { createCourse } from '../../actions/course';
 
-const initialState = { title: '', sector: '', courseClass: '', idTutor: ''};
+const initialState = { title: '', sector: [], idTutor: ''};
 
 
 const FormAddCourse = () => {
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
-    const [form, setForm] = useState(initialState);
+    const [form, setForm] = useState({ title: '', sector: [], idTutor: user.result._id});
     const dispatch = useDispatch();
     const classes = useStyles();
 
@@ -21,11 +21,16 @@ const FormAddCourse = () => {
         e.preventDefault();
 
         setForm({ ...form, idTutor: user.result._id });
-    
         dispatch(createCourse(form));
+        setForm({ ...form, title: '', sector: [] });
       };
 
     const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
+
+    const handleChangeSector = (e) => {
+        const list = e.target.value.toUpperCase().split(",");
+        setForm({ ...form, ["sector"]: list });
+    }
 
     return (
     <Container component="main" maxWidth="xs">
@@ -34,9 +39,8 @@ const FormAddCourse = () => {
         <Typography component="h1" variant="h5"> Ajouter un cours </Typography>
         <form className={classes.form} onSubmit={handleSubmit}>
             <Grid container spacing={2}>
-            <Input name="title" label="Le titre" handleChange={handleChange} autoFocus />
-            <Input name="courseClass" label="Classe" handleChange={handleChange} />
-            <Input name="sector" label="Filière" handleChange={handleChange} />
+            <Input name="title" label="Le titre" value={form.title} handleChange={handleChange} autoFocus />
+            <Input name="sector" label="Filières" value={form.sector} handleChange={handleChangeSector} />
             </Grid>
             <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>
             Ajouter

@@ -36,3 +36,9 @@ export const fetchCourse = (id) => API.get(`/courses/${id}`);
 export const createCourse = (Course) => API.post('/courses', Course);
 export const updateCourse = (id, updatedCourse) => API.patch(`/courses/${id}`, updatedCourse);
 export const deleteCourse = (id) => API.delete(`/courses/${id}`);
+
+export const fetchLabs = () => API.get('/labs');
+export const fetchLab = (id) => API.get(`/labs/${id}`);
+export const createLab = (Course) => API.post('/labs', Course);
+export const updateLab = (id, updatedCourse) => API.patch(`/labs/${id}`, updatedCourse);
+export const deleteLab = (id) => API.delete(`/labs/${id}`);

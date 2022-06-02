@@ -1,0 +1,15 @@
+
+.LabsPage {
+    background-color: #F5F5F5;
+    border-radius: 10px;
+    padding: 1% 1.5%;
+}
+
+.title {
+    color: #4C4C4C;
+    margin-left: 2%;
+}
+
+.link:hover {
+    text-decoration: none;
+}

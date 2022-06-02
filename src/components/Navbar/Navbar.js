@@ -21,16 +21,16 @@ const Navbar = ({userLang, setUserLang, userTheme,
 	return (
 		<div className={'navbar ' + styles.navBar}>
 			<h3 className={styles.title}>CodEditor</h3>
-			<Select options={languages} defaultValue={{ value: "python", label: "Python" }}
+			<Select options={languages} defaultValue={languages[0]}
 					onChange={(e) => {
 						setUserLang(e.value);
 						setFileType(e.value);
 					}}
 					placeholder={languages[userLang]} />
-			<Select options={themes} defaultValue={{ value: "light", label: "Light" }}
+			<Select options={themes} defaultValue={themes[0]}
 					onChange={(e) => setUserTheme(e.value)}
 					placeholder={themes[userTheme]} />
-			<button type="button" class="btn btn-primary" onClick={() => compile()}>
+			<button type="button" className="btn btn-primary" onClick={() => compile()}>
 				Run
 			</button>
 			<label>Font Size</label>

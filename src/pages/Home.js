@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import Header from '../components/Header/Header';
 import ImageHeaderLite from '../components/ImageHeaderLite/ImageHeaderLite';
@@ -15,6 +15,11 @@ import CodEditor from '../components/CodEditor/CodEditor';
 
 
 const Home = () => {
+
+  // State variable to set users source code
+	const [userCode, setUserCode] = useState(``);
+  // State variable to set users input
+	const [userInput, setUserInput] = useState("");
 
   return (
     <>
@@ -39,7 +44,10 @@ const Home = () => {
       </div>
 
       <UnderLineText text="Utiliser CodEnligne Maintenant"/>
-      <CodEditor />
+      <CodEditor 
+          readOnly={false}
+          userCode={userCode} setUserCode={setUserCode} 
+          userInput={userInput} setUserInput={setUserInput} />
       <Footer />
     </>
   );

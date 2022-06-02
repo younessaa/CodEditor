@@ -9,11 +9,10 @@ import './Header.css';
 
 const Header = () => {
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
-    console.log(user.result._id);
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [isStudent, setIsStudent] = useState(JSON.parse(localStorage.getItem('isStudent')));
-    console.log("isStudent : ", isStudent);
+    
 
     const logout = () => {
         dispatch({ type: actionType.LOGOUT });
@@ -53,7 +52,7 @@ const Header = () => {
                             <button className="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 {user.result.name.toUpperCase()}
                             </button>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                             {isStudent.result && <Link to={'/mylabs'} className="dropdown-item" >Mes TPs</Link>} 
                             <Link to={'/profil'} className="dropdown-item" >Profil</Link><hr/>
                             <button className="dropdown-item" onClick={logout} >Se déconnecter</button>

@@ -18,7 +18,7 @@ const CoursesTable = () => {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
   const [isStudent, setIsStudent] = useState(JSON.parse(localStorage.getItem('isStudent')));
   const idUser = user.result._id;
-  const courses_list = useSelector((state) => state.courses);
+  const courses_list = useSelector((state) => state.courses.courses);
 
   const courses = isStudent.result ? courses_list.filter((course) => {
     if(course.participant.includes(idUser)) {
@@ -31,10 +31,6 @@ const CoursesTable = () => {
     }
   });
 
-  
-
-  console.log(courses_list)
-
 
   return (
     <div className={styles.courses}>
@@ -45,7 +41,7 @@ const CoursesTable = () => {
           { 
               courses.map((course) => (
                       <div key={course._id} className='col-md-5 mb-3 mr-2 ml-4'>
-                          <Link className={styles.link} to={`/courses/${course._id}`}><CourseCard title={course.title}/></Link>
+                          <Link className={styles.link} to={`/courses/${course._id}`}><CourseCard key={course._id} title={course.title}/></Link>
                       </div>
                   )
               )
@@ -54,7 +50,7 @@ const CoursesTable = () => {
           :
           <div className="text-center">
             <div className="spinner-border text-secondary" role="status">
-              <span class="sr-only">Loading...</span>
+              <span className="sr-only">Loading...</span>
             </div>
           </div>
           }

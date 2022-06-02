@@ -1,22 +1,21 @@
 import React from 'react';
 import { useParams } from "react-router-dom";
+
 import Header from '../components/Header/Header';
 import Footer from '../components/Footer/Footer';
+import LabPage from '../components/LabPage/LabPage';
 
-import CoursePage from '../components/CoursePage/CoursePage';
-
-const Course = () => {
+const Lab = () => {
   let { id } = useParams();
-
   return (
     <>
       <Header />
 
-      <CoursePage id={id}/>
+      <LabPage id={id} />
 
       <Footer />
     </>
   )
 }
 
-export default Course
+export default Lab
