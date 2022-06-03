@@ -21,7 +21,7 @@ const Navbar = ({userLang, setUserLang, userTheme,
 	return (
 		<div className={'navbar ' + styles.navBar}>
 			<h3 className={styles.title}>CodEditor</h3>
-			<Select options={languages} defaultValue={languages[0]}
+			<Select options={languages} value={languages.find((item) => item.value === userLang)}
 					onChange={(e) => {
 						setUserLang(e.value);
 						setFileType(e.value);

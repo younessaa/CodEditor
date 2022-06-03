@@ -8,6 +8,8 @@ import Header from '../components/Header/Header';
 import Footer from '../components/Footer/Footer';
 import CodEditor from '../components/CodEditor/CodEditor';
 
+import { ENDPOINT } from '../constants/API';
+
 const RealTimeLab = () => {
     const { idCourse, idLab } = useParams();
 
@@ -15,6 +17,8 @@ const RealTimeLab = () => {
 	const [userCode, setUserCode] = useState(``);
     // State variable to set users input
     const [userInput, setUserInput] = useState("");
+    // State variable to set editors default language
+	const [userLang, setUserLang] = useState("python");
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
 
     // const [codes, setCodes] = useState('');
@@ -30,18 +34,17 @@ const RealTimeLab = () => {
     const [course, setCourse] = useState(courses[0]);
 
     let socket;
-    const ENDPOINT = "http://localhost:5000/"
 
     useEffect(() => {
         socket = io(ENDPOINT);
 
         const { _id, name } = user.result;
-        const courseID = course.idTutor;
+        const courseID = course._id;
 
-        socket.emit('join', { _id, name, userCode, userInput, courseID }, (error) => {
+        socket.emit('join', { _id, name, userCode, userInput, userLang, courseID }, (error) => {
             
         });
-    }, [userCode, userInput]);
+    }, [userCode, userInput, userLang]);
 
   return (
     <>
@@ -49,6 +52,7 @@ const RealTimeLab = () => {
 
         <CodEditor 
                 readOnly={false}
+                userLang={userLang} setUserLang={setUserLang} 
                 userCode={userCode} setUserCode={setUserCode} 
                 userInput={userInput} setUserInput={setUserInput}/>
 

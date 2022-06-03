@@ -8,12 +8,17 @@ import styles from './LabPage.module.css';
 import { getCourses } from '../../actions/course';
 import CodEditor from '../CodEditor/CodEditor';
 
+import { ENDPOINT } from '../../constants/API';
+
 const LabPage = ({id}) => {
 
     // State variable to set users source code
 	const [userCode, setUserCode] = useState(``);
     // State variable to set users input
     const [userInput, setUserInput] = useState("");
+    // State variable to set editors default language
+	const [userLang, setUserLang] = useState("python");
+
     const [userName, setUserName] = useState("");
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
 
@@ -32,13 +37,12 @@ const LabPage = ({id}) => {
     const [userId, setUserId] = useState("");
 
     let socket;
-    const ENDPOINT = "http://localhost:5000/";
 
     useEffect(() => {
         socket = io(ENDPOINT);
 
         const { _id, name } = user.result;
-        const courseID = user.result._id;
+        const courseID = id;
 
         socket.emit('join', { _id, name, courseID }, (error) => {
             
@@ -49,7 +53,7 @@ const LabPage = ({id}) => {
         socket = io(ENDPOINT);
   
         socket.on("roomDataByCourseID", ({ users }) => {
-          setUsers(users.filter((user) => user._id !== user.courseID));
+          setUsers(users.filter((user) => user._id !== course.idTutor));
         });
     }, [ENDPOINT, location.path]);
 
@@ -67,29 +71,36 @@ const LabPage = ({id}) => {
         if(data !== undefined) {
             setUserCode(data.userCode);
             setUserName(data.name);
+            setUserLang(data.userLang);
         }
     }, [userId, users])
 
     return (
-        <div className={'m-2 ' + styles.LabPage}>
-            <div className='row mb-2'>
-                <h5 className={'col-5 pb-2 ' + styles.title}>
-                    {userName !== "" ? `l’ÉDITEUR DE ${userName}`.toUpperCase() : ""}
-                </h5>
-                <p className={"col-3 text-center mt-1 " + styles.selectionner}>
-                    Sélectionnez un étudiant
-                </p>
-                <Select className='col-3' options={users_list} defaultValue={users_list[0]}
-					onChange={(e) => {
-						setUserId(e.value);
-					}}
-					placeholder={users_list[userId]} />
+        <>
+            <h5 className={'text-center mb-2 ' + styles.title}>
+                {"TPs"+` en temps réel : ${course.title}`.toUpperCase()}
+            </h5>
+            <div className={'m-2 ' + styles.LabPage}>
+                <div className='row '>
+                    <h5 className={'col-6 pb-2 ' + styles.title}>
+                        {userName !== "" ? `l’ÉDITEUR DE ${userName}`.toUpperCase() : ""}
+                    </h5>
+                    <p className={"col-2 text-center " + styles.selectionner}> 
+                        <span className='text-success '>{users_list.length + " Utilisateurs connectés"}</span> 
+                    </p>
+                    <Select className='col-3' options={users_list} defaultValue={users_list[0]}
+                        onChange={(e) => {
+                            setUserId(e.value);
+                        }}
+                        placeholder={userId ? users_list[userId] : "Sélectionner un utilisateur"} />
+                </div>
+                <CodEditor 
+                    readOnly={true}
+                    userLang={userLang} setUserLang={setUserLang} 
+                    userCode={userCode} setUserCode={setUserCode} 
+                    userInput={userInput} setUserInput={setUserInput}/>
             </div>
-            <CodEditor 
-                readOnly={true}
-                userCode={userCode} setUserCode={setUserCode} 
-                userInput={userInput} setUserInput={setUserInput}/>
-        </div>
+        </>
     )
 }
 

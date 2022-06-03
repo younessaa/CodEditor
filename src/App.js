@@ -23,13 +23,14 @@ const App = () => {
     <BrowserRouter>
       <Container maxWidth="lg">
         <Routes>
-          <Route path="/" exact element={user ? <Home /> : <Navigate to="/auth" replace />} />
-          <Route path="/labs" exact element={user ? <Labs />: <Navigate to="/auth" replace />} />
-          <Route path="/labs/:id" exact element={user ? <Lab /> : <Navigate to="/auth" replace />} />
-          <Route path="/editor" exact element={user ? <Editor /> : <Navigate to="/auth" replace />} />
-          <Route path="/courses" exact element={user ? <Courses /> : <Navigate to="/auth" replace />} />
-          <Route path="/courses/:id" exact element={user ? <Course /> : <Navigate to="/auth" replace />} />
-          <Route path="/courses/:idCourse/labs/:idLab" exact element={user ? <RealTimeLab /> : <Navigate to="/auth" replace />} />
+          <Route path="/" exact element={<Home />} />
+          <Route path="/labs" exact element={<Labs />} />
+          <Route path="/labs/:id" exact element={<Lab />} />
+          <Route path="/editor" exact element={<Editor />} />
+          <Route path="/courses" exact element={<Courses />} />
+          <Route path="/courses/:id/labs" exact element={<Course />} />
+          <Route path="/courses/:id" exact element={<Course />} />
+          <Route path="/courses/:idCourse/labs/:idLab" exact element={<RealTimeLab />} />
           <Route path="/auth" exact element={<Auth />} />
         </Routes>
       </Container>

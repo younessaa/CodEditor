@@ -5,6 +5,8 @@ import { io } from "socket.io-client";
 import styles from "./UsersOnligne.module.css";
 import avatar from '../../assets/images/profil-avatar.png';
 
+import { ENDPOINT } from '../../constants/API';
+
 const UsersOnligne = () => {
   const location = useLocation();
   const [users, setUsers] = useState('');
@@ -12,7 +14,6 @@ const UsersOnligne = () => {
   const [isStudent, setIsStudent] = useState(JSON.parse(localStorage.getItem('isStudent')));
 
   let socket;
-  const ENDPOINT = "http://localhost:5000/"
 
   useEffect(() => {
       socket = io(ENDPOINT);
@@ -28,7 +29,7 @@ const UsersOnligne = () => {
   useEffect(() => {
       socket = io(ENDPOINT);
 
-      socket.on("roomDataByCourseID", ({ users }) => {
+      socket.on("roomData", ({ users }) => {
         setUsers(users);
       });
   }, [ENDPOINT, location]);
