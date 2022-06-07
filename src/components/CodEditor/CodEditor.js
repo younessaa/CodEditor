@@ -24,7 +24,6 @@ const CodEditor = ({readOnly, userLang, setUserLang, userCode, setUserCode, user
 	// State variable to set users output
 	const [cpuTime, setCpuTime] = useState("");
 
-	const [file, setFile] = useState("");
   	const [fileType, setFileType] = useState("py");
   	const [fileName, setFileName] = useState("fichier");
 	
@@ -72,7 +71,7 @@ const CodEditor = ({readOnly, userLang, setUserLang, userCode, setUserCode, user
 		if(fileType === "python"){
 		setFileType("py");
 		}
-		fileDownload(file, `${fileName}-${dateNow}.${fileType}`)
+		fileDownload(userCode, `${fileName}-${dateNow}.${fileType}`)
 
 	}
 
@@ -101,7 +100,7 @@ const CodEditor = ({readOnly, userLang, setUserLang, userCode, setUserCode, user
 									theme={userTheme}
 									language={userLang}
 									value={userCode}
-									onChange={(value) => { setUserCode(value); setFile(value);  }}
+									onChange={(value) => { setUserCode(value);  }}
 								/>
 								
 							</div>	

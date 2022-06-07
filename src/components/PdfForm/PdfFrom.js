@@ -84,7 +84,7 @@ const PdfForm = ({course, setCourse, idCourse, number, pdf, setPdf}) => {
 
 	return (
 		<div>
-			<form  >
+			<form  onSubmit={handleSubmit}>
 				<div className="row">
 					<div className="col-6">
 						<input
@@ -105,7 +105,7 @@ const PdfForm = ({course, setCourse, idCourse, number, pdf, setPdf}) => {
 					}
 					
 					{	(progress === 100 && file.path !== "" && file.name !== "") && 
-						<button onClick={handleSubmit} className="col-2 btn btn-outline-primary btn-sm" >
+						<button type="submit" className="col-2 btn btn-outline-primary btn-sm" >
 							Sauvgarder
 						</button>
 					}

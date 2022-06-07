@@ -10,6 +10,8 @@ import Course from './pages/Course';
 import Labs from './pages/Labs';
 import Lab from './pages/Lab';
 import RealTimeLab from './pages/RealTimeLab';
+import Deliverables from './pages/Deliverables';
+import Profil from './pages/Profil';
 
 const App = () => {
 
@@ -24,6 +26,7 @@ const App = () => {
       <Container maxWidth="lg">
         <Routes>
           <Route path="/" exact element={<Home />} />
+          <Route path="/profil" exact element={<Profil />} />
           <Route path="/labs" exact element={<Labs />} />
           <Route path="/labs/:id" exact element={<Lab />} />
           <Route path="/editor" exact element={<Editor />} />
@@ -31,6 +34,7 @@ const App = () => {
           <Route path="/courses/:id/labs" exact element={<Course />} />
           <Route path="/courses/:id" exact element={<Course />} />
           <Route path="/courses/:idCourse/labs/:idLab" exact element={<RealTimeLab />} />
+          <Route path="/courses/:idCourse/labs/:idLab/deliverables" exact element={<Deliverables />} />
           <Route path="/auth" exact element={<Auth />} />
         </Routes>
       </Container>

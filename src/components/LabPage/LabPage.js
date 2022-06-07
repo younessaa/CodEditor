@@ -53,7 +53,7 @@ const LabPage = ({id}) => {
         socket = io(ENDPOINT);
   
         socket.on("roomDataByCourseID", ({ users }) => {
-          setUsers(users.filter((user) => user._id !== course.idTutor));
+          setUsers(users.filter((user) => user._id !== course.idTutor && user.courseID == course._id));
         });
     }, [ENDPOINT, location.path]);
 

@@ -21,7 +21,7 @@ export const getLab = (id) => async (dispatch) => {
   }
 };
 
-export const createCourse = (lab) => async (dispatch) => {
+export const createLab = (lab) => async (dispatch) => {
   try {
     const { data } = await api.createLab(lab);
 
@@ -44,7 +44,7 @@ export const updateLab = (id, lab) => async (dispatch) => {
 
 export const deleteLab = (id) => async (dispatch) => {
   try {
-    await await api.deleteLab(id);
+    await api.deleteLab(id);
 
     dispatch({ type: DELETE, payload: id });
   } catch (error) {

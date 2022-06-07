@@ -7,6 +7,12 @@ const authReducer = (state = { authData: null}, action) => {
       localStorage.setItem('isStudent', JSON.stringify({ ...action?.isStudent }));
 
       return { ...state, authData: action.data, loading: false, errors: null };
+    case actionType.FETCH_ONE:
+      return { ...state, authData: action.payload, loading: false, errors: null };
+    case actionType.UPDATE:
+      let result = action?.payload;
+      localStorage.setItem('profile', JSON.stringify({ ...action?.payload }));
+      return { ...state, authData: action.payload, loading: false, errors: null };
     case actionType.LOGOUT:
       localStorage.clear();
 

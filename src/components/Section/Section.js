@@ -37,7 +37,7 @@ const Section = ({labs, setLabs, course, setCourse, id, lab, number}) => {
 	}, [id, course]);
 
   return (
-    <div className={styles.Section}>
+    <div className={styles.Section + " clearfix"}>
         <h6 className={styles.title}>Section {number}</h6>
         <div className={styles.tp}>
             { (pdf !== null && pdf !== undefined && pdf.path !== "" && pdf.name !== "") ?
@@ -53,6 +53,14 @@ const Section = ({labs, setLabs, course, setCourse, id, lab, number}) => {
               </div>
             }
         </div>
+        {
+          (lab !== null && lab !== undefined && !isStudent.result) && 
+          <Link className={styles.link} to={`/courses/${id}/labs/${lab._id}/deliverables`}>
+            <button type="button" className="btn btn-outline-dark float-right">
+              Voir Les livrables
+            </button>
+          </Link>
+        }
     </div>
   )
 }

@@ -50,7 +50,7 @@ const SignUp = () => {
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
         </Avatar>
-        <Typography component="h1" variant="h5">{ isStudent ? 'Sign in as a Student' : 'Sign in as a Tutor' }</Typography>
+        <Typography component="h1" variant="h5">{ isStudent ? "S'authentifier en tant qu'étudiant" : "S'authentifier en tant que tuteur" }</Typography>
         <form className={classes.form} onSubmit={handleSubmit}>
           <Grid container spacing={2}>
             { isSignup && (
@@ -59,18 +59,18 @@ const SignUp = () => {
               <Input name="lastName" label="Last Name" handleChange={handleChange} half />
             </>
             )}
-            <Input name="email" label="Email Address" handleChange={handleChange} type="email" />
+            <Input name="email" label="Email" handleChange={handleChange} type="email" />
             <Input name="password" label="Password" handleChange={handleChange} type={showPassword ? 'text' : 'password'} handleShowPassword={handleShowPassword} />
             { isSignup && <Input name="confirmPassword" label="Repeat Password" handleChange={handleChange} type="password" /> }
           </Grid>
           <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>
-            { isSignup ? 'Sign Up' : 'Sign In' }
+            { isSignup ? "S'inscrire" : "S'identifier" }
           </Button>
           
           <Grid container justifyContent="flex-end">
             <Grid item>
               <Button onClick={switchMode}>
-                { isStudent ? 'Are you a Tutor ? Sign in as a Tutor' : "Are you a Student ? Sign in as a Student" }
+                { isStudent ? 'Êtes-vous un tuteur? Connectez-vous en tant que tuteur' : "Êtes-vous un étudiant ? Se connecter en tant qu'étudiant" }
               </Button>
             </Grid>
           </Grid>

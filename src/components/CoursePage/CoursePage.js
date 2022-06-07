@@ -10,13 +10,15 @@ import Section from '../../components/Section/Section';
 const CoursePage = ({id}) => {
 
   const [isStudent, setIsStudent] = useState(JSON.parse(localStorage.getItem('isStudent')));
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-      dispatch(getCourses());
-  }, [dispatch]);
-
   const courses = useSelector((state) => state.courses.courses.filter((item) => item._id === id));
+  const dispatch = useDispatch();
+  useEffect(() => {
+      if(!courses){
+
+        dispatch(getCourses());
+      }
+  }, [dispatch]);
+  
   const [course, setCourse] = useState(courses[0]);
 
   const [sections, setSections] = useState(parseInt(course.sections));

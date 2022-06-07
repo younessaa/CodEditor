@@ -12,7 +12,6 @@ const Header = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [isStudent, setIsStudent] = useState(JSON.parse(localStorage.getItem('isStudent')));
-    
 
     const logout = () => {
         dispatch({ type: actionType.LOGOUT });
@@ -53,8 +52,8 @@ const Header = () => {
                                 {user.result.name.toUpperCase()}
                             </button>
                             <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            {isStudent.result && <Link to={'/mylabs'} className="dropdown-item" >Mes TPs</Link>} 
-                            <Link to={'/profil'} className="dropdown-item" >Profil</Link><hr/>
+                            {/* {isStudent.result && <Link to={'/deliverables'} className="dropdown-item" >Mes TPs</Link>}  */}
+                            <Link to={`/profil`} className="dropdown-item" >Profil</Link><hr/>
                             <button className="dropdown-item" onClick={logout} >Se déconnecter</button>
                             </div>
                         </li>
