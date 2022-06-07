@@ -36,7 +36,7 @@ export const signup = async (req, res) => {
 
     const hashedPassword = await bcrypt.hash(password, 12);
 
-    const result = await UserModal.create({ email, password: hashedPassword, name: `${firstName} ${lastName}`, sector: `${sector}${studentClass}`});
+    const result = await UserModal.create({ email, password: hashedPassword, name: `${firstName} ${lastName}`, sector});
 
     const token = jwt.sign( { email: result.email, id: result._id }, secret);
 
@@ -49,7 +49,7 @@ export const signup = async (req, res) => {
 };
 
 export const createStudent = async (req, res) => {
-  const { email, password, firstName, lastName, studentClass, sector } = req.body;
+  const { email, password, firstName, lastName, sector } = req.body;
 
   try {
 
@@ -59,7 +59,7 @@ export const createStudent = async (req, res) => {
     
       const hashedPassword = await bcrypt.hash(password, 12);
     
-      const newStudent = await UserModal.create({ email, password: hashedPassword, name: `${firstName} ${lastName}`, sector: `${sector}${studentClass}` });
+      const newStudent = await UserModal.create({ email, password: hashedPassword, name: `${firstName} ${lastName}`, sector });
       await newStudent.save();
 
       res.status(201).json(newStudent );
@@ -92,24 +92,26 @@ export const getStudent = async (req, res) => {
 
 export const updateStudent = async (req, res) => {
   const { id } = req.params;
-  const { email, password, firstName, lastName, studentClass, sector } = req.body;
+  const { email, password, firstName, lastName, sector } = req.body;
   
   if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No Student with id: ${id}`);
+  const oldUser = await UserModal.findOne({ email });
   
   let hashedPassword;
   let updatedStudent;
   
-  if(password != null && password != undefined){
+  if(password != null && password != undefined && password !== oldUser.password){
     hashedPassword = await bcrypt.hash(password, 12);
-    updatedStudent = { email, password: hashedPassword, name: `${firstName} ${lastName}`, sector: `${sector}${studentClass}`, _id: id };
+    updatedStudent = { email, password: hashedPassword, name: `${firstName} ${lastName}`, sector, _id: id };
   }
   else{
-    updatedStudent = { email, name: `${firstName} ${lastName}`, sector: `${sector}${studentClass}`, _id: id };
+    updatedStudent = { email, password, name: `${firstName} ${lastName}`, sector, _id: id };
   }
 
   await UserModal.findByIdAndUpdate(id, updatedStudent, { new: true });
+  const token = jwt.sign({ email, id: oldUser._id }, secret);
 
-  res.json(updatedStudent);
+  res.json({ result : updatedStudent, token });
 }
 
 export const deleteStudent = async (req, res) => {

@@ -7,6 +7,7 @@ import dotenv from 'dotenv';
 import tutorRouter from "./routes/tutor.js";
 import studentRouter from "./routes/student.js";
 import course from "./routes/course.js";
+import lab from "./routes/lab.js";
 import getRouter from "./routes/router.js";
 
 
@@ -20,6 +21,7 @@ app.use(cors());
 app.use("/students", studentRouter);
 app.use("/tutors", tutorRouter);
 app.use("/courses", course);
+app.use("/labs", lab);
 app.use("/", getRouter);
 
 
