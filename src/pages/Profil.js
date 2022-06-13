@@ -1,7 +1,8 @@
 import React, { useState,  } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { updateStudent, updateTutor } from '../actions/auth';
+import { updateStudent } from '../actions/student';
+import { updateTutor } from '../actions/tutor';
 
 import Header from '../components/Header/Header';
 import Footer from '../components/Footer/Footer';

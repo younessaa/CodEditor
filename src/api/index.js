@@ -19,6 +19,7 @@ export const compile = (formData) => API.post('/compile', formData);
 
 export const fetchStudents = () => API.get('/students');
 export const fetchStudent = (id) => API.get(`/students/${id}`);
+export const createStudent = (student) => API.post('/students', student);
 export const updateStudent = (id, updatedStudent) => API.patch(`/students/${id}`, updatedStudent);
 export const deleteStudent = (id) => API.delete(`/students/${id}`);
 
@@ -27,6 +28,7 @@ export const tutorSignUp = (formData) => API.post('/tutors/signup', formData);
 
 export const fetchTutors = () => API.get('/tutors');
 export const fetchTutor = (id) => API.get(`/tutors/${id}`);
+export const createTutor = (tutor) => API.post('/tutors', tutor);
 export const updateTutor = (id, updatedTutor) => API.patch(`/tutors/${id}`, updatedTutor);
 export const deleteTutor = (id) => API.delete(`/tutors/${id}`);
 

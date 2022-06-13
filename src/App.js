@@ -7,6 +7,7 @@ import Home from './pages/Home';
 import Editor from './pages/Editor';
 import Courses from './pages/Courses';
 import Course from './pages/Course';
+import Dashboard from './pages/Dashboard/Dashboard'
 import Labs from './pages/Labs';
 import Lab from './pages/Lab';
 import RealTimeLab from './pages/RealTimeLab';
@@ -26,6 +27,7 @@ const App = () => {
       <Container maxWidth="lg">
         <Routes>
           <Route path="/" exact element={<Home />} />
+          <Route path="/dashboard" exact element={<Dashboard />} />
           <Route path="/profil" exact element={<Profil />} />
           <Route path="/labs" exact element={<Labs />} />
           <Route path="/labs/:id" exact element={<Lab />} />

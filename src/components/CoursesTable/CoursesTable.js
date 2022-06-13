@@ -18,7 +18,7 @@ const CoursesTable = () => {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
   const [isStudent, setIsStudent] = useState(JSON.parse(localStorage.getItem('isStudent')));
   const idUser = user.result._id;
-  const courses_list = useSelector((state) => state.courses.courses);
+  const courses_list = useSelector((state) => state.courses);
 
   const courses = isStudent.result ? courses_list.filter((course) => {
     if(course.participant.includes(idUser)) {

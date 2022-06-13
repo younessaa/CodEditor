@@ -1,0 +1,14 @@
+
+
+.TabContentCard {
+    background-color: white;
+    border-radius: 20px;
+    margin: 3% 2.5%;
+    padding: 2% 1%;
+    width: 95%;
+}
+
+.TabBorder {
+    padding-bottom: 2%;
+    border-bottom: 1px solid #D0D0D0;
+}

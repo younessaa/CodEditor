@@ -20,6 +20,8 @@ const Home = () => {
 	const [userCode, setUserCode] = useState(``);
   // State variable to set users input
 	const [userInput, setUserInput] = useState("");
+  // State variable to set editors default language
+	const [userLang, setUserLang] = useState("python");
 
   return (
     <>
@@ -46,6 +48,7 @@ const Home = () => {
       <UnderLineText text="Utiliser CodEnligne Maintenant"/>
       <CodEditor 
           readOnly={false}
+          userLang={userLang} setUserLang={setUserLang}
           userCode={userCode} setUserCode={setUserCode} 
           userInput={userInput} setUserInput={setUserInput} />
       <Footer />

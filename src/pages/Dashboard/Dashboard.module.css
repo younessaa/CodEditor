@@ -1,0 +1,43 @@
+
+
+.easyML {
+    color: white;
+    font-size: 1.5em;
+    font-weight: 700;
+    margin: 2px 4px;
+    background-color: black;
+    border-radius: 55.5px;
+    text-align: center;
+}
+
+.easyMLLink {
+    text-decoration: none;
+}
+.easyMLLink:hover {
+    text-decoration: none;
+}
+
+.dashTitleBg {
+    background-color: rgba(243, 243, 243, 0.08);
+}
+
+.dashTitle {
+    color: black;
+    font-size: 2.5em;
+    font-weight: bold;
+    margin-left: 10%;
+}
+
+.navLink {
+    color: #8B8B8B;
+    margin-bottom: 3%;
+}
+
+.navLink:hover {
+    color: #8B8B8B;
+}
+
+.tabContent {
+    background-color: #F2F2F2;
+    padding-top: 4%;
+}

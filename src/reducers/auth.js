@@ -1,6 +1,6 @@
 import * as actionType from '../constants/actionTypes';
 
-const authReducer = (state = { authData: null}, action) => {
+const authReducer = (state = { authData: []}, action) => {
   switch (action.type) {
     case actionType.AUTH:
       localStorage.setItem('profile', JSON.stringify({ ...action?.data }));
@@ -9,8 +9,7 @@ const authReducer = (state = { authData: null}, action) => {
       return { ...state, authData: action.data, loading: false, errors: null };
     case actionType.FETCH_ONE:
       return { ...state, authData: action.payload, loading: false, errors: null };
-    case actionType.UPDATE:
-      let result = action?.payload;
+    case actionType.UPDATE_STUDENT || actionType.UPDATE_TUTOR:
       localStorage.setItem('profile', JSON.stringify({ ...action?.payload }));
       return { ...state, authData: action.payload, loading: false, errors: null };
     case actionType.LOGOUT:

@@ -32,7 +32,7 @@ const RealTimeLab = () => {
         dispatch(getLabs());
     }, [dispatch]);
 
-    const courses = useSelector((state) => state.courses.courses.filter((item) => item._id === idCourse));
+    const courses = useSelector((state) => state.courses.filter((item) => item._id === idCourse));
     const myLabs = useSelector((state) => state.labs.filter((item) => item.idStudent === user.result._id && item.idCourse === idCourse));
     const myLab = myLabs.find((object) => object.idLab === idLab);
     const [course, setCourse] = useState(courses[0]);

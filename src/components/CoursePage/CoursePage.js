@@ -10,7 +10,7 @@ import Section from '../../components/Section/Section';
 const CoursePage = ({id}) => {
 
   const [isStudent, setIsStudent] = useState(JSON.parse(localStorage.getItem('isStudent')));
-  const courses = useSelector((state) => state.courses.courses.filter((item) => item._id === id));
+  const courses = useSelector((state) => state.courses.filter((item) => item._id === id));
   const dispatch = useDispatch();
   useEffect(() => {
       if(!courses){

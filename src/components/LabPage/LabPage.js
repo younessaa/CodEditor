@@ -30,7 +30,7 @@ const LabPage = ({id}) => {
         dispatch(getCourses());
     }, [dispatch]);
 
-    const courses = useSelector((state) => state.courses.courses.filter((item) => item._id === id));
+    const courses = useSelector((state) => state.courses.filter((item) => item._id === id));
     const [course, setCourse] = useState(courses[0]);
     const [users, setUsers] = useState([]);
     const [users_list, setUsers_list] = useState([]);

@@ -84,6 +84,8 @@ const CodEditor = ({readOnly, userLang, setUserLang, userCode, setUserCode, user
 		<>
 			<div className={styles.codEditor}>
 				<Navbar
+					readOnly={readOnly}
+				    userCode={userCode} setUserCode={setUserCode}
 					userLang={userLang} setUserLang={setUserLang}
 					userTheme={userTheme} setUserTheme={setUserTheme}
 					fontSize={fontSize} setFontSize={setFontSize}
